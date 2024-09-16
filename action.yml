@@ -1,11 +1,19 @@
 name: custom-job
-description: custom JS action
+description: custom action
 
 inputs:
   name:
     description: "The name to greet"
     required: true
 
+# For JS
+# runs:
+#   using: "node20"
+#   main: "dist/index.js"
+
+# For Docker
 runs:
-  using: "node20"
-  main: "dist/index.js"
+  using: docker
+  image: Dockerfile
+  env:
+    NAME: ${{ inputs.name }}
